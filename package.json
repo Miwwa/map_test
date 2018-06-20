@@ -2,6 +2,7 @@
   "name": "city_test",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://miwwa.github.io/map_test",
   "dependencies": {
     "pixi-viewport": "^2.7.0",
     "pixi.js": "^4.8.1",
@@ -11,6 +12,8 @@
     "stats.js": "^0.17.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
