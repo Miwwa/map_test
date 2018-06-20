@@ -32,8 +32,8 @@ function onLoad () {
   PIXI.loader
   .add([
     {name: 'bunny', url: 'https://cdn.rawgit.com/staff0rd/pixi-tilesprite/d1beeb8f/bunnies-1.png'},
-    {name: 'tile', url: '/assets/Zagotovka_one.png'},
-    {name: 'road', url: '/assets/Road_temp.png'}
+    {name: 'tile', url: './assets/Zagotovka_one.png'},
+    {name: 'road', url: './assets/Road_temp.png'}
   ])
   .load(onAssetsLoaded);
 
