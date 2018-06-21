@@ -3,9 +3,9 @@ import Viewport from 'pixi-viewport';
 import IsoGrid from './IsoGrid';
 import Building from './Building';
 
-const mapSize        = {x: 3, y: 3};
-const cellSize       = {x: 640, y: 320};
-const grid           = new IsoGrid(0, 0, cellSize.x, cellSize.y);
+const mapSize         = {x: 3, y: 3};
+const cellSize        = {x: 640, y: 320};
+const grid            = new IsoGrid(0, 0, cellSize.x, cellSize.y);
 const buildingOffsetY = -13;
 
 function onLoad () {
@@ -81,6 +81,9 @@ function onLoad () {
 
     viewport.on('pointermove', onPointerMove);
     viewport.on('moved', onViewportMove);
+    app.ticker.add(dt => {
+      // console.log(dt);
+    });
   }
 
   function onPointerMove (e) {
@@ -90,27 +93,31 @@ function onLoad () {
     isoPosText.text   = `Iso X: ${iso.x.toFixed(2)} Y: ${iso.y.toFixed(2)}`;
   }
 
-  let selectedTile = null;
+  let selectedTile     = null;
   let selectedBuilding = null;
 
   function onViewportMove ({center}) {
-    const isoPos       = grid.screenToIsoFloor(center.x, center.y);
-    const nextSelectedTile = tiles[isoPos.x] && tiles[isoPos.x][isoPos.y];
+    const isoPos               = grid.screenToIsoFloor(center.x, center.y);
+    const nextSelectedTile     = tiles[isoPos.x] && tiles[isoPos.x][isoPos.y];
     const nextSelectedBuilding = buildings[isoPos.x] && buildings[isoPos.x][isoPos.y];
 
-    if (nextSelectedTile != null) {
-      nextSelectedTile.tint = 0xff0000;
-    }
-    if (selectedTile != null && nextSelectedTile !== selectedTile) {
-      selectedTile.tint = 0xffffff;
+    if (nextSelectedTile !== selectedTile) {
+      if (nextSelectedTile != null) {
+        nextSelectedTile.tint = 0xff0000;
+      }
+      if (selectedTile != null) {
+        selectedTile.tint = 0xffffff;
+      }
     }
     selectedTile = nextSelectedTile;
 
-    if (nextSelectedBuilding != null) {
-      nextSelectedBuilding.activate();
-    }
-    if (selectedBuilding != null && nextSelectedBuilding !== selectedBuilding) {
-      selectedBuilding.deactivate();
+    if (nextSelectedBuilding !== selectedBuilding) {
+      if (nextSelectedBuilding != null) {
+        nextSelectedBuilding.activate();
+      }
+      if (selectedBuilding != null) {
+        selectedBuilding.deactivate();
+      }
     }
     selectedBuilding = nextSelectedBuilding;
   }

@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import TweenLite from 'gsap/TweenLite';
 
 const animations = {
   'Day':   0,
@@ -20,10 +21,13 @@ class Building extends PIXI.Container {
     this.rainSprite  = this._getAnimation(rainFrames);
 
     this.nightSprite.visible = false;
+    this.nightSprite.alpha   = 0;
+    this.fallSprite.alpha    = 0;
+    this.fallSprite.visible  = false;
     this.fallSprite.stop();
-    this.fallSprite.visible = false;
-    this.rainSprite.stop();
+    this.rainSprite.alpha   = 0;
     this.rainSprite.visible = false;
+    this.rainSprite.stop();
 
     this.addChild(this.daySprite);
     this.addChild(this.nightSprite);
@@ -35,6 +39,9 @@ class Building extends PIXI.Container {
     this.nightSprite.interactive = true;
     this.nightSprite.buttonMode  = true;
     this.nightSprite.on('pointertap', this.toggleRain.bind(this));
+
+    this.nightTween = null;
+    this.rainTween  = null;
   }
 
   _getSprite (frameName) {
@@ -51,34 +58,68 @@ class Building extends PIXI.Container {
   }
 
   activate () {
-    this.nightSprite.visible = true;
+    if (this.nightTween)
+      this.nightTween.kill();
+
+    this.nightTween = TweenLite.to(this.nightSprite, 1, {
+      alpha:   1,
+      delay:   0.2,
+      onStart: () => {
+        this.nightSprite.visible     = true;
+        this.nightSprite.interactive = true;
+      }
+    });
   }
 
   deactivate () {
-    this.nightSprite.visible = false;
     this.turnOffRain();
+
+    if (this.nightTween)
+      this.nightTween.kill();
+
+    this.nightTween = TweenLite.to(this.nightSprite, 1, {
+      alpha:      0,
+      onStart:    () => {
+        this.nightSprite.interactive = false;
+      },
+      onComplete: () => {
+        this.nightSprite.visible = false;
+      }
+    });
   }
 
   turnOnRain () {
-    if (!this.isRaining) {
-      this.isRaining = true;
+    this.isRaining = true;
 
-      this.fallSprite.visible = true;
-      this.rainSprite.visible = true;
-      this.fallSprite.play();
-      this.rainSprite.play();
-    }
+    if (this.rainTween)
+      this.rainTween.kill();
+
+    this.rainTween = TweenLite.to([this.rainSprite, this.fallSprite], 1, {
+      alpha:   1,
+      onStart: () => {
+        this.rainSprite.visible = true;
+        this.fallSprite.visible = true;
+        this.rainSprite.play();
+        this.fallSprite.play();
+      }
+    });
   }
 
   turnOffRain () {
-    if (this.isRaining) {
-      this.isRaining = false;
+    this.isRaining = false;
 
-      this.fallSprite.visible = false;
-      this.rainSprite.visible = false;
-      this.fallSprite.stop();
-      this.rainSprite.stop();
-    }
+    if (this.rainTween)
+      this.rainTween.kill();
+
+    this.rainTween = TweenLite.to([this.rainSprite, this.fallSprite], 1, {
+      alpha:      0,
+      onComplete: () => {
+        this.rainSprite.visible = false;
+        this.fallSprite.visible = false;
+        this.rainSprite.stop();
+        this.fallSprite.stop();
+      }
+    });
   }
 
   toggleRain () {
@@ -92,6 +133,8 @@ class Building extends PIXI.Container {
     this.nightSprite.destroy();
     this.daySprite.destroy();
     this.fallSprite.destroy();
+    this.rainTween.kill();
+    this.fallSprite.kill();
     super.destroy();
   }
 }

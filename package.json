@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://miwwa.github.io/map_test",
   "dependencies": {
+    "gsap": "^2.0.1",
     "pixi-viewport": "^2.7.0",
     "pixi.js": "^4.8.1",
     "react": "^16.4.1",
