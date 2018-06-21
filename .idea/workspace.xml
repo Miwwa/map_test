@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d40d634-c54f-4c73-8b97-dc0b21bef520" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/assets/tile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Building.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/3na1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/3na1_color.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Day-Night/TestBuilding.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Day-Night/TestBuilding.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Day-Night/images/TestBuilding_atlas_.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/building.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Layer 216 Comp 1 (0-00-02-00).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Layer 216 Comp 1 (0-00-02-00)_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/OnlyRain/TestBuilding.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/OnlyRain/TestBuilding.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/OnlyRain/images/TestBuilding_atlas_.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Road_temp.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Scene.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/V1/TestBuilding.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/V1/TestBuilding.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/V1/images/TestBuilding_atlas_.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Zagotovka.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/Zagotovka_one.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/pustota.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/pustota2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Building.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Building.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -56,8 +33,12 @@
           <file leaf-file-name="Building.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Building.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+                <state relative-caret-position="296">
+                  <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+                  <folding>
+                    <element signature="n#!!block;n#_getSprite#0;n#Building#0" />
+                    <element signature="n#!!block;n#_getAnimation#0;n#Building#0" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -99,7 +80,7 @@
           <file leaf-file-name="test.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/test.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="248">
+                <state relative-caret-position="-85">
                   <caret line="34" column="8" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
                   <folding>
                     <element signature="e#0#32#0" expanded="true" />
@@ -138,8 +119,8 @@
         <option value="$PROJECT_DIR$/public/assets/Day-Night/frames.json" />
         <option value="$PROJECT_DIR$/src/buildingFrames.json" />
         <option value="$PROJECT_DIR$/public/assets/Day-Night/images/building.json" />
-        <option value="$PROJECT_DIR$/src/Building.js" />
         <option value="$PROJECT_DIR$/src/test.js" />
+        <option value="$PROJECT_DIR$/src/Building.js" />
       </list>
     </option>
   </component>
@@ -277,7 +258,7 @@
       <option name="presentableId" value="Default" />
       <updated>1529483068596</updated>
       <workItem from="1529483069794" duration="22811000" />
-      <workItem from="1529553498496" duration="8455000" />
+      <workItem from="1529553498496" duration="9035000" />
     </task>
     <task id="LOCAL-00001" summary="first commit&#10;moving camera and selecting centered sprite">
       <created>1529511579518</created>
@@ -297,17 +278,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31266000" />
+    <option name="totallyTimeSpent" value="31846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32897604" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32897604" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32897604" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -517,12 +498,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/building.json">
+    <entry file="file://$PROJECT_DIR$/src/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+        <state relative-caret-position="-85">
+          <caret line="34" column="8" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
           <folding>
-            <element signature="n#!!block;n#building_0.png#0;n#!!block;n#frames#0;n#!!top" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -537,20 +518,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test.js">
+    <entry file="file://$PROJECT_DIR$/public/assets/building.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="34" column="8" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
+        <state relative-caret-position="236">
+          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
           <folding>
-            <element signature="e#0#32#0" expanded="true" />
+            <element signature="n#!!block;n#building_0.png#0;n#!!block;n#frames#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Building.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        <state relative-caret-position="296">
+          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+          <folding>
+            <element signature="n#!!block;n#_getSprite#0;n#Building#0" />
+            <element signature="n#!!block;n#_getAnimation#0;n#Building#0" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -29,6 +29,12 @@ class Building extends PIXI.Container {
     this.addChild(this.nightSprite);
     this.addChild(this.fallSprite);
     this.addChild(this.rainSprite);
+
+    this.isRaining = false;
+
+    this.nightSprite.interactive = true;
+    this.nightSprite.buttonMode  = true;
+    this.nightSprite.on('pointertap', this.toggleRain.bind(this));
   }
 
   _getSprite (frameName) {
@@ -46,18 +52,40 @@ class Building extends PIXI.Container {
 
   activate () {
     this.nightSprite.visible = true;
-    this.fallSprite.visible  = true;
-    this.rainSprite.visible  = true;
-    this.fallSprite.play();
-    this.rainSprite.play();
   }
 
   deactivate () {
     this.nightSprite.visible = false;
-    this.fallSprite.visible  = false;
-    this.rainSprite.visible  = false;
-    this.fallSprite.stop();
-    this.rainSprite.stop();
+    this.turnOffRain();
+  }
+
+  turnOnRain () {
+    if (!this.isRaining) {
+      this.isRaining = true;
+
+      this.fallSprite.visible = true;
+      this.rainSprite.visible = true;
+      this.fallSprite.play();
+      this.rainSprite.play();
+    }
+  }
+
+  turnOffRain () {
+    if (this.isRaining) {
+      this.isRaining = false;
+
+      this.fallSprite.visible = false;
+      this.rainSprite.visible = false;
+      this.fallSprite.stop();
+      this.rainSprite.stop();
+    }
+  }
+
+  toggleRain () {
+    if (this.isRaining)
+      this.turnOffRain();
+    else
+      this.turnOnRain();
   }
 
   destroy () {
