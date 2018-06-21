@@ -1,10 +1,12 @@
 import * as PIXI from 'pixi.js';
 import Viewport from 'pixi-viewport';
 import IsoGrid from './IsoGrid';
+import Building from './Building';
 
-const mapSize  = {x: 10, y: 10};
-const cellSize = {x: 800, y: 600};
-const grid     = new IsoGrid(0, 0, cellSize.x, cellSize.y);
+const mapSize        = {x: 3, y: 3};
+const cellSize       = {x: 640, y: 320};
+const grid           = new IsoGrid(0, 0, cellSize.x, cellSize.y);
+const buildingOffsetY = -13;
 
 function onLoad () {
   let app = new PIXI.Application();
@@ -31,39 +33,49 @@ function onLoad () {
 
   PIXI.loader
   .add([
-    {name: 'bunny', url: 'https://cdn.rawgit.com/staff0rd/pixi-tilesprite/d1beeb8f/bunnies-1.png'},
-    {name: 'tile', url: './assets/Zagotovka_one.png'},
-    {name: 'road', url: './assets/Road_temp.png'}
+    {name: 'tile', url: './assets/tile.png'},
+    {name: 'building_atlas', url: './assets/building.json'}
   ])
   .load(onAssetsLoaded);
 
   const mousePosText = new PIXI.Text(''),
         isoPosText   = new PIXI.Text('');
 
-  const tiles = [];
+  const tiles     = {};
+  const buildings = {};
 
   function onAssetsLoaded (resources) {
-    const tileTexture              = PIXI.Texture.fromImage('tile');
-    tileTexture.baseTexture.mipmap = false;
+    const tileTexture = PIXI.Texture.fromImage('tile');
 
+    //make background layer
     for (let i = 0; i < mapSize.x; i++) {
-      tiles[i] = [];
+      tiles[i] = {};
       for (let j = 0; j < mapSize.y; j++) {
         const tileSprite = new PIXI.Sprite(tileTexture);
         const tilePos    = grid.isoToScreen(i, j);
         tileSprite.anchor.set(0.5, 1);
         tileSprite.position.set(tilePos.x, tilePos.y + cellSize.y);
-        tileSprite.width  = cellSize.x;
-        tileSprite.height = cellSize.y;
         viewport.addChild(tileSprite);
         tiles[i][j] = tileSprite;
+      }
+    }
+    //make buildings layer
+    for (let i = 0; i < mapSize.x; i++) {
+      buildings[i] = {};
+      for (let j = 0; j < mapSize.y; j++) {
+        const tilePos  = grid.isoToScreen(i, j);
+        const building = new Building();
+        building.position.set(tilePos.x, tilePos.y + cellSize.y + buildingOffsetY);
+        building.scale.set(0.8);
+        viewport.addChild(building);
+        buildings[i][j] = building;
       }
     }
     const mapCenter = grid.isoToScreen(mapSize.x / 2 - 1, mapSize.y / 2 - 1);
     viewport.moveCenter(mapCenter.x, mapCenter.y);
 
     mousePosText.position.set(0, 0);
-    isoPosText.position.set(0, 50);
+    isoPosText.position.set(0, 30);
     app.stage.addChild(mousePosText);
     app.stage.addChild(isoPosText);
 
@@ -79,18 +91,28 @@ function onLoad () {
   }
 
   let selectedTile = null;
+  let selectedBuilding = null;
 
-  function onViewportMove({center}) {
-    const isoPos = grid.screenToIsoFloor(center.x, center.y);
-    const nextSelected = tiles[isoPos.x][isoPos.y];
+  function onViewportMove ({center}) {
+    const isoPos       = grid.screenToIsoFloor(center.x, center.y);
+    const nextSelectedTile = tiles[isoPos.x] && tiles[isoPos.x][isoPos.y];
+    const nextSelectedBuilding = buildings[isoPos.x] && buildings[isoPos.x][isoPos.y];
 
-    if (nextSelected != null) {
-      nextSelected.tint = 0xff0000;
+    if (nextSelectedTile != null) {
+      nextSelectedTile.tint = 0xff0000;
     }
-    if (selectedTile != null && nextSelected !== selectedTile) {
+    if (selectedTile != null && nextSelectedTile !== selectedTile) {
       selectedTile.tint = 0xffffff;
     }
-    selectedTile = nextSelected;
+    selectedTile = nextSelectedTile;
+
+    if (nextSelectedBuilding != null) {
+      nextSelectedBuilding.activate();
+    }
+    if (selectedBuilding != null && nextSelectedBuilding !== selectedBuilding) {
+      selectedBuilding.deactivate();
+    }
+    selectedBuilding = nextSelectedBuilding;
   }
 }
 
